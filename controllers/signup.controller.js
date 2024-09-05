@@ -1,22 +1,26 @@
 const User = require("../models/user.model");
+const checkUserExists = require("../utils/checkUserExists.util");
+const validateFields = require("../utils/validateFields.util");
 
-const signupController = async (req, res) => {
+const signupController = async (req, res, next) => {
   const { name, email, username, password, role } = req.body;
 
   try {
-    if (!(name && email && username && password)) {
-      return res
-        .status(400)
-        .json({ message: "Missing necessary input fields!" });
+    const missingFields = validateFields(
+      ["name", "email", "username", "password"],
+      req.body
+    );
+    if (missingFields) {
+      const error = new Error(missingFields);
+      error.statusCode = 400;
+      throw error;
     }
 
-    const countExistingUsers = await User.countDocuments({
-      $or: [{ username }, { email }],
-    });
-    if (countExistingUsers > 0) {
-      return res
-        .status(409)
-        .json({ message: "username or email already exists" });
+    const userExists = checkUserExists(username, email);
+    if (userExists) {
+      const error = new Error("username or email already exists");
+      error.statusCode = 409;
+      throw error;
     }
 
     const newUserObject = new User({ name, email, username, password, role });
@@ -25,13 +29,9 @@ const signupController = async (req, res) => {
       res
         .status(201)
         .json({ message: "new user created successfully", savedUser });
-      // console.log(savedUser);
     }
   } catch (error) {
-    // console.log(error);
-    res.status(500).json({
-      message: `New User Controller: Internal server error: ${error.message}`,
-    });
+    next(error);
   }
 };
 

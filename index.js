@@ -12,8 +12,11 @@ app.get("/", (req, res) => {
 });
 
 const userRouter = require("./routes/user.route");
+const errorHandler = require("./middlewares/errorHandler.middleware");
 app.use("/user", userRouter);
 
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log("Server is up. at ", PORT);
