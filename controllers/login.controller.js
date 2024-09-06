@@ -1,4 +1,5 @@
 const User = require("../models/user.model");
+const { jwtSign } = require("../utils/jwt.util");
 const validateFields = require("../utils/validateFields.util");
 
 const loginController = async (req, res, next) => {
@@ -32,7 +33,9 @@ const loginController = async (req, res, next) => {
         throw error;
     }
 
-    res.status(200).json({message: "Login successful", userFromDB});
+    const token = jwtSign(userFromDB._id, userFromDB.role, '1h');
+
+    res.status(200).json({message: "Login successful", token});
   } catch (error) {
     next(error);
   }
