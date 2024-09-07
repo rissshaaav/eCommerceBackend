@@ -13,7 +13,10 @@ app.get("/", (req, res) => {
 
 const userRouter = require("./routes/user.route");
 const errorHandler = require("./middlewares/errorHandler.middleware");
+const productRouter = require("./routes/product.route");
+
 app.use("/user", userRouter);
+app.use("/product", productRouter);
 
 
 app.use(errorHandler);
