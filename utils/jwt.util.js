@@ -13,3 +13,8 @@ exports.jwtSign = (userId, role, expiry) => {
 
   return token;
 };
+
+exports.jwtDecoded = token => {
+  const decoded = jwt.verify(token, JWT_SECRET);
+  return decoded;
+}
