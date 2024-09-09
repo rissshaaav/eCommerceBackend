@@ -14,10 +14,11 @@ app.get("/", (req, res) => {
 const userRouter = require("./routes/user.route");
 const errorHandler = require("./middlewares/errorHandler.middleware");
 const productRouter = require("./routes/product.route");
+const cartRouter = require("./routes/cart.route");
 
 app.use("/user", userRouter);
 app.use("/product", productRouter);
-
+app.use("/cart", cartRouter)
 
 app.use(errorHandler);
 
