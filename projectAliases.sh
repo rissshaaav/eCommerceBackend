@@ -13,3 +13,7 @@ addToCart(){
 getCart(){
     curl -X GET -H "Authorization: Bearer $1" -o res.json http://localhost:3000/cart
 }
+
+updateCart(){
+    curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer $1" -d @req.json -o res.json http://localhost:3000/cart/update
+}
