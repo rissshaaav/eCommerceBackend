@@ -1,4 +1,4 @@
-const Cart = require("../models/cart.model");
+const Cart = require("../../models/cart.model");
 
 const updateCartItemQuantityController = async (req, res, next) => {
   const { productId, quantity } = req.body;

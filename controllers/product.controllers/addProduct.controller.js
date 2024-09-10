@@ -1,5 +1,5 @@
-const Product = require("../models/product.model");
-const validateFields = require("../utils/validateFields.util");
+const Product = require("../../models/product.model");
+const validateFields = require("../../utils/validateFields.util");
 
 const addProductController = async (req, res, next) => {
   const { name, description, price, stock, category, imageUrl } = req.body;

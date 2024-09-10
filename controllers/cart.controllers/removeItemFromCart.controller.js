@@ -1,4 +1,4 @@
-const Cart = require("../models/cart.model");
+const Cart = require("../../models/cart.model");
 
 const removeItemFromCartController = async (req, res, next) => {
   const { productId } = req.params;

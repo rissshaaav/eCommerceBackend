@@ -1,7 +1,7 @@
-const User = require("../models/user.model");
-const checkUserExists = require("../utils/checkUserExists.util");
-const validateFields = require("../utils/validateFields.util");
-const {jwtSign} = require("../utils/jwt.util");
+const User = require("../../models/user.model");
+const checkUserExists = require("../../utils/checkUserExists.util");
+const validateFields = require("../../utils/validateFields.util");
+const {jwtSign} = require("../../utils/jwt.util");
 
 
 const signupController = async (req, res, next) => {

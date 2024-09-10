@@ -1,4 +1,4 @@
-const Cart = require("../models/cart.model")
+const Cart = require("../../models/cart.model")
 
 const getCartController = async (req, res, next) => {
     const userId = req.user._id;

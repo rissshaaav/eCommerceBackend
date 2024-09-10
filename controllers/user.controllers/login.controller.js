@@ -1,6 +1,6 @@
-const User = require("../models/user.model");
-const { jwtSign } = require("../utils/jwt.util");
-const validateFields = require("../utils/validateFields.util");
+const User = require("../../models/user.model");
+const { jwtSign } = require("../../utils/jwt.util");
+const validateFields = require("../../utils/validateFields.util");
 
 const loginController = async (req, res, next) => {
   const { email, username, password } = req.body;
